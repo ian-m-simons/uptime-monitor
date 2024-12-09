@@ -11,5 +11,4 @@
 # TODO:
 	>consider changing audible alarm for failed ping
 	>create option to silence alarm and continue monitoring
-	>implement OS check so it monitor works crossplatform
 
