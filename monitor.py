@@ -16,7 +16,11 @@ def main():
             if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
                 serviceDown = True
         if serviceDown:
-            print("WARNING! service at "+ address[index] + " is down!")
+            print("\aWARNING! service at "+ address[index] + " is down!")
+            time.sleep(1)
+            print("\a")
+            time.sleep(1)
+            print("\a")
             os.system("rm output.txt")
             exit(0)
         else:
