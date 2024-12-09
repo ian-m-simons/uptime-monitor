@@ -75,7 +75,7 @@ def main():
             serviceDown = False
             time.sleep(0.1)
             for i in range(len(lines)):
-                if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
+                if "destination host unreachable" in lines[i].lower() or "timeout" in lines[i].lower():
                     serviceDown = True
         if serviceDown:
             print("\r\aWARNING! service at "+ address[index] + " is down!", end='')
