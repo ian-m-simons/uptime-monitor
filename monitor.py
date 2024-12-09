@@ -1,7 +1,6 @@
 import os
 import time
 
-
 def inputIP(prompt):
     success = False
     while not success:
@@ -74,11 +73,10 @@ def main():
             if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
                 serviceDown = True
         if serviceDown:
-            print("\aWARNING! service at "+ address[index] + " is down!")
-            time.sleep(1)
-            print("\a")
-            time.sleep(1)
-            print("\a")
+            print("\aWARNING! service at "+ address[index] + " is down!\nPress any key to silence alarm")
+            while True:
+                print("\a", end='\r')
+                time.sleep(1)
             os.system("rm output.txt")
             exit(0)
         else:
