@@ -62,31 +62,32 @@ def inputAddresses():
 def main():
     address = inputAddresses()
     index = 0
+    serviceDown = False
     while True:
-        time.sleep(0.1)
-        os.system("ping " + address[index] + " -c 4 > output.txt")
-        with open("output.txt", "r") as infile:
-            lines = infile.readlines()
-        serviceDown = False
-        time.sleep(0.1)
-        for i in range(len(lines)):
-            if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
-                serviceDown = True
-        if serviceDown:
-            print("\aWARNING! service at "+ address[index] + " is down!\nPress any key to silence alarm")
-            while True:
-                print("\a", end='\r')
-                time.sleep(1)
+        if not serviceDown:
+            time.sleep(0.1)
+            os.system("ping " + address[index] + " -c 4 > output.txt")
+            with open("output.txt", "r") as infile:
+                lines = infile.readlines()
             os.system("rm output.txt")
-            exit(0)
+            serviceDown = False
+            time.sleep(0.1)
+            for i in range(len(lines)):
+                if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
+                    serviceDown = True
+        if serviceDown:
+            print("\r\aWARNING! service at "+ address[index] + " is down!", end='')
+            time.sleep(1)
         else:
             print("Service at "+ address[index] +" appears to be available")
         time.sleep(0.1)
-        if index < len(address)-1:
+        if index < len(address)-1 and not serviceDown:
             index += 1
+            serviceDown = False
+        elif serviceDown:
+            pass
         else:
             index = 0
-        os.system("rm output.txt")
 
 if __name__ == "__main__":
     main()
