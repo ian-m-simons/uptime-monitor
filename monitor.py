@@ -22,6 +22,7 @@ def main():
             index += 1
         else:
             index = 0
+        os.system("rm output.txt")
 
 
 if __name__ == "__main__":
