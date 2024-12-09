@@ -66,10 +66,12 @@ def main():
     while True:
         if not serviceDown:
             time.sleep(0.1)
-            os.system("ping " + address[index] + " -c 4 > output.txt")
+            if os.name == 'nt':
+                os.system("ping " + address[index] + " > output.txt")
+            else:
+                os.system("ping " + address[index] + " -c 4 > output.txt")
             with open("output.txt", "r") as infile:
                 lines = infile.readlines()
-            os.system("rm output.txt")
             serviceDown = False
             time.sleep(0.1)
             for i in range(len(lines)):
