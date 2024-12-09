@@ -6,7 +6,6 @@
 	>if a resource is unavailable it will set off an alarm
 # how to use
 	>download and run in terminal
-	>currently only works with linux (and likely mac though I haven't tested that yet)
 
 # TODO:
 	>consider changing audible alarm for failed ping
