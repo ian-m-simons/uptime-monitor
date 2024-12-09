@@ -8,6 +8,5 @@
 	>download and run in terminal
 
 # TODO:
-	>consider changing audible alarm for failed ping
-	>create option to silence alarm and continue monitoring
+	>create option to silence alarm and continue monitoring other services
 
