@@ -10,7 +10,7 @@ def main():
             lines = infile.readlines()
         serviceDown = False
         for i in range(len(lines)):
-            if "Destination Host Unreachable" in lines[i]:
+            if "Destination Host Unreachable" in lines[i] or "timeout" in lines[i]:
                 serviceDown = True
         if serviceDown:
             print("WARNING! service at "+ address[index] + " is down!")
