@@ -9,8 +9,7 @@
 	>currently only works with linux (and likely mac though I haven't tested that yet)
 
 # TODO:
-	>input validation for IP addresses
 	>consider changing audible alarm for failed ping
-	>create option to silence alarm and then later continue monitoring
+	>create option to silence alarm and continue monitoring
 	>implement OS check so it monitor works crossplatform
 
