@@ -1,6 +1,6 @@
 import os
 import time
-
+import _thread
 def inputIP(prompt):
     success = False
     while not success:
@@ -58,10 +58,17 @@ def inputAddresses():
         moreAddresses = inputBin("add more addresses? (1=yes/0=no) ")
     return addressList
 
+def input_thread(a_list):
+    input()
+    a_list.append(True)
+
 def monitor(address):
+    print("press any key to return to menu")
     serviceDown = False
     index = 0
-    while True:
+    a_list = []
+    _thread.start_new_thread(input_thread, (a_list,))
+    while not a_list:
         if not serviceDown:
             time.sleep(0.1)
             if os.name == 'nt':
@@ -76,7 +83,7 @@ def monitor(address):
                 if "destination host unreachable" in lines[i].lower() or "timeout" in lines[i].lower():
                     serviceDown = True
         if serviceDown:
-            print("\r\aWARNING! service at "+ address[index] + " is down!", end='')
+            print("\r\aWARNING! service at "+ address[index] + " is down! (press any key to return to menu", end='')
             time.sleep(1)
         else:
             print("Service at "+ address[index] +" appears to be available")
