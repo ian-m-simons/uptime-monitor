@@ -58,11 +58,9 @@ def inputAddresses():
         moreAddresses = inputBin("add more addresses? (1=yes/0=no) ")
     return addressList
 
-
-def main():
-    address = inputAddresses()
-    index = 0
+def monitor(address):
     serviceDown = False
+    index = 0
     while True:
         if not serviceDown:
             time.sleep(0.1)
@@ -90,6 +88,18 @@ def main():
             pass
         else:
             index = 0
+
+
+
+def main():
+    while True:
+        print("Welcome!")
+        address = inputAddresses()
+        index = 0
+        serviceDown = False
+        monitor(address)
+
+
 
 if __name__ == "__main__":
     main()
