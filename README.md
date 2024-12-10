@@ -8,5 +8,5 @@
 	>download and run in terminal
 
 # TODO:
-	>create option to silence alarm and continue monitoring other services
+	>add more menu options
 
