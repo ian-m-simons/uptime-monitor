@@ -83,7 +83,7 @@ def monitor(address):
                 if "destination host unreachable" in lines[i].lower() or "timeout" in lines[i].lower():
                     serviceDown = True
         if serviceDown:
-            print("\r\aWARNING! service at "+ address[index] + " is down! (press any key to return to menu", end='')
+            print("\r\aWARNING! service at "+ address[index] + " is down! (press ENTER key to return to menu", end='')
             time.sleep(1)
         else:
             print("Service at "+ address[index] +" appears to be available")
