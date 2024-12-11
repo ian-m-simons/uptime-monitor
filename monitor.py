@@ -107,7 +107,10 @@ def monitor(address):
         elif serviceDown:
             pass
         else:
+            for i in range(len(address)):
+                print("\033[F", end='')
             index = 0
+            
 
 
 
