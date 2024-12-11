@@ -38,7 +38,7 @@ def inputInt(prompt):
             value = int(value)
             success = True
         except:
-            "[ERROR] input must be an integer"
+            print("[ERROR] input must be an integer")
     return value
 
 
@@ -132,8 +132,6 @@ def main():
                 exit(0)
             else:
                 print("[ERROR] Invalid Selection")
-        address = inputAddresses()
-        monitor(address)
 
 
 
