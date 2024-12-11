@@ -1,6 +1,7 @@
 import os
 import time
 import _thread
+import subprocess
 
 def inputIP(prompt):
     success = False
@@ -79,22 +80,22 @@ def monitor(address):
     print("press ENTER key to return to menu")
     serviceDown = False
     index = 0
+    output = ""
     a_list = []
     _thread.start_new_thread(input_thread, (a_list,))
     while not a_list:
         if not serviceDown:
             time.sleep(0.1)
             if os.name == 'nt':
-                os.system("ping " + address[index] + " > output.txt")
+                output = subprocess.run(['ping', address[index]], stdout=subprocess.PIPE)
+                output = str(output)
             else:
-                os.system("ping " + address[index] + " -c 4 > output.txt")
-            with open("output.txt", "r") as infile:
-                lines = infile.readlines()
+                output = subprocess.run(['ping',address[index], '-c', '4'], stdout=subprocess.PIPE)
+                output = str(output)
             serviceDown = False
             time.sleep(0.1)
-            for i in range(len(lines)):
-                if "destination host unreachable" in lines[i].lower() or "timeout" in lines[i].lower():
-                    serviceDown = True
+            if "destination host unreachable" in output.lower() or "timeout" in output.lower():
+                serviceDown = True
         if serviceDown:
             print("\r\aWARNING! service at "+ address[index] + " is down! (press ENTER key to return to menu)", end='')
             time.sleep(1)
