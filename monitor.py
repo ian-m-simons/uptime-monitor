@@ -63,7 +63,7 @@ def input_thread(a_list):
     a_list.append(True)
 
 def monitor(address):
-    print("press any key to return to menu")
+    print("press ENTER key to return to menu")
     serviceDown = False
     index = 0
     a_list = []
