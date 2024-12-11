@@ -1,6 +1,7 @@
 import os
 import time
 import _thread
+
 def inputIP(prompt):
     success = False
     while not success:
@@ -28,6 +29,18 @@ def inputIP(prompt):
         else:
             addressValue += str(address[i])
     return addressValue
+
+def inputInt(prompt):
+    success = False
+    while not success:
+        value = input(prompt)
+        try:
+            value = int(value)
+            success = True
+        except:
+            "[ERROR] input must be an integer"
+    return value
+
 
 def inputBin(prompt):
     success = False
@@ -101,9 +114,25 @@ def monitor(address):
 def main():
     while True:
         print("Welcome!")
+        address = []
+        while True:
+            print("Please select an option below.")
+            print("1. Input addresses of services to monitor")
+            print("2. Monitor Services")
+            print("3. Exit")
+            choice = inputInt("option: ")
+            if choice == 1:
+                address = inputAddresses()
+            elif choice == 2:
+                if len(address) > 0:
+                    monitor(address)
+                else:
+                    print("[ERROR] no addresses to monitor, please select option 1")
+            elif choice == 3:
+                exit(0)
+            else:
+                print("[ERROR] Invalid Selection")
         address = inputAddresses()
-        index = 0
-        serviceDown = False
         monitor(address)
 
 
